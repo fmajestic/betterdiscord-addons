@@ -9,10 +9,55 @@
     "bundle": "bundlebd"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^3.4.0",
     "@types/node": "^18.11.9",
     "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.8",
     "bundlebd": "^2.1.4",
+    "eslint": "^8.27.0",
+    "eslint-config-react-app": "^7.0.1",
+    "prettier": "^2.7.1",
     "typescript": "^4.8.4"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ],
+    "ignorePatterns": "dist/",
+    "rules": {
+      "no-console": [
+        "error",
+        {
+          "allow": [
+            "info",
+            "warn",
+            "error"
+          ]
+        }
+      ],
+      "no-debugger": "error",
+      "sort-imports": "off"
+    }
+  },
+  "prettier": {
+    "printWidth": 120,
+    "semi": true,
+    "tabWidth": 2,
+    "useTabs": false,
+    "endOfLine": "auto",
+    "singleQuote": false,
+    "jsxSingleQuote": false,
+    "bracketSpacing": false,
+    "arrowParens": "avoid",
+    "trailingComma": "none",
+    "importOrder": [
+      "^react$|^node:",
+      "components",
+      "^\\.\\.?(/(\\.\\.|\\w+))*$",
+      "\\.\\w+$"
+    ],
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true
   },
   "homepage": "https://gitlab.com/fmajestic/betterdiscord-addons#readme",
   "repository": {

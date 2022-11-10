@@ -133,7 +133,7 @@
 	var __webpack_exports__ = {};
 	(() => {
 		__webpack_require__.d(__webpack_exports__, {
-			default: () => src
+			default: () => EasyCopy
 		});
 		const external_EasyCopy_namespaceObject = "EasyCopy";
 		var external_EasyCopy_default = __webpack_require__.n(external_EasyCopy_namespaceObject);
@@ -153,15 +153,6 @@
 			Patcher
 		} = instance;
 		const api = null && instance;
-
-		function fromFixed(pattern) {
-			return new RegExp(pattern.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")
-		}
-
-		function parseRegex(pattern) {
-			const match = /\/(.*)\/(d?g?i?m?s?u?y?)/.exec(pattern);
-			return match ? new RegExp(match[1], match[2]) : fromFixed(pattern)
-		}
 
 		function useDataKey(key) {
 			function load() {
@@ -208,7 +199,7 @@
 			return Copyable_React.createElement("button", {
 				ref,
 				type: "button",
-				"aria-label": "Click to copy button text",
+				"aria-label": "Click to copy",
 				className: classList.join(" "),
 				onClick: () => {
 					DiscordNative.clipboard.copy(text || ref.current.innerText);
@@ -276,10 +267,20 @@
 				rows: 5
 			}))
 		}
+
+		function fromFixed(pattern) {
+			return new RegExp(pattern.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")
+		}
+
+		function parseRegex(pattern) {
+			const match = /\/(.*)\/(d?g?i?m?s?u?y?)/.exec(pattern);
+			return match ? new RegExp(match[1], match[2]) : fromFixed(pattern)
+		}
 		var style = __webpack_require__(169);
 		var src_React = __webpack_require__(113);
-		const src = meta => {
-			let [settings, reloadSettings, saveSettings] = useSettings();
+
+		function EasyCopy(meta) {
+			let [settings, , saveSettings] = useSettings();
 			let patterns = settings.patterns.map(parseRegex);
 
 			function start() {
@@ -287,7 +288,7 @@
 				const parser = Webpack.getModule(Webpack.Filters.byProps("parse", "parseTopic"));
 				Patcher.after(parser, "parse", ((_, __, parsedMessage) => {
 					const newMessage = [];
-					for (const element of parsedMessage) {
+					for (const element of parsedMessage)
 						if ("string" === typeof element) {
 							let chunks = [element];
 							for (const pattern of patterns) {
@@ -317,8 +318,7 @@
 							}
 							newMessage.push(...chunks)
 						} else newMessage.push(element);
-						return newMessage
-					}
+					return newMessage
 				}))
 			}
 

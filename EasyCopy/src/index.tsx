@@ -1,27 +1,28 @@
-import { ReactNode } from "react";
+import {ReactNode} from "react";
 
-import { DOM, Patcher, Webpack } from './common/api';
-import { parseRegex } from "./regex";
-import { useSettings } from "./common/settings";
 import Copyable from "./components/Copyable";
 import SettingsPanel from "./components/SettingsPanel";
-import { PluginMeta } from "../../types";
 
-import style from './style.scss';
+import {PluginMeta} from "../../types";
+import {DOM, Patcher, Webpack} from "./common/api";
+import {useSettings} from "./common/settings";
+import {parseRegex} from "./regex";
 
-export default (meta: PluginMeta) => {
-  let [settings, reloadSettings, saveSettings] = useSettings();
+import style from "./style.scss";
+
+export default function EasyCopy(meta: PluginMeta) {
+  let [settings, , saveSettings] = useSettings();
 
   let patterns = settings.patterns.map(parseRegex);
 
   function start() {
     DOM.addStyle(style);
 
-    // https://github.com/TheCommieAxolotl/BetterDiscord-Stuff/blob/c524bcb4e87d10874c280a3a59be44054c2f121a/BetterSyntax/BetterSyntax.plugin.js#L419
-    const parser = Webpack.getModule(Webpack.Filters.byProps('parse', 'parseTopic'));
+    // Yoinked from https://github.com/TheCommieAxolotl/BetterDiscord-Stuff/blob/c524bcb4e87d10874c280a3a59be44054c2f121a/BetterSyntax/BetterSyntax.plugin.js#L419
+    const parser = Webpack.getModule(Webpack.Filters.byProps("parse", "parseTopic"));
 
     // It would be much nicer to add a new "rule" to parser.defaultRules, but that would be a pain in the ass to reverse-engineer
-    Patcher.after(parser, 'parse', (_, __, parsedMessage: ReactNode[]) => {
+    Patcher.after(parser, "parse", (_, __, parsedMessage: ReactNode[]) => {
       const newMessage = [];
 
       for (const element of parsedMessage) {
@@ -62,8 +63,7 @@ export default (meta: PluginMeta) => {
           }
 
           newMessage.push(...chunks);
-        }
-        else {
+        } else {
           // TODO: handle text in formatted chunks (bold, underline, inline code, ...)
           // TODO: extra special cases:
           //  - code block:
@@ -73,14 +73,14 @@ export default (meta: PluginMeta) => {
           //    - maybe try a ctrl+click and put "Copy with Ctrl+Click" in a tooltip
           newMessage.push(element);
         }
-
-        return newMessage;
       }
+
+      return newMessage;
     });
   }
 
   function getSettingsPanel() {
-    return <SettingsPanel settings={settings} setSettings={next => saveSettings(settings = next)} />;
+    return <SettingsPanel settings={settings} setSettings={next => saveSettings((settings = next))} />;
   }
 
   function stop() {
@@ -89,5 +89,5 @@ export default (meta: PluginMeta) => {
     DOM.removeStyle();
   }
 
-  return { start, stop, getSettingsPanel };
-};
+  return {start, stop, getSettingsPanel};
+}

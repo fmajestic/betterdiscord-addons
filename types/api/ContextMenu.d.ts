@@ -1,5 +1,4 @@
 import type * as React from "react";
-import { ReactNode } from "react";
 
 /**
  * Base menu item component.
@@ -25,10 +24,10 @@ interface BaseMenuItemProps<T> {
   subtext?: string;
 
   /** URL of an image to show on the side */
-  image?: ReactNode;
+  image?: React.ReactNode;
 
   /** Component to render on the side */
-  icon?: ReactNode;
+  icon?: React.ReactNode;
 
   /** Show as danger (red) */
   danger?: boolean;
@@ -114,7 +113,7 @@ interface MenuSubmenuItemProps {
    * React component(s) to render.
    * Overrides the {@linkcode items} config.
    */
-  children?: ReactNode;
+  children?: React.ReactNode;
 }
 
 interface MenuSeparatorItemProps {
@@ -143,7 +142,7 @@ export class MenuComponents {
 /**
  * `ContextMenu` is a module to help patch and create context menus. Instance is accessible through the {@link BdApi}.
  */
-export default class ContextMenu {
+export default class ContextMenu extends MenuComponents {
   /**
    * Allows you to patch a given context menu. Acts as a wrapper around the `Patcher`.
    *
@@ -254,7 +253,7 @@ export default class ContextMenu {
    */
   open(
     event: React.MouseEvent,
-    menuComponent: React.ReactNode,
+    menuComponent: React.ComponentType,
     config?: {
       /** Position for the menu, default: right */
       position?: "left" | "right";

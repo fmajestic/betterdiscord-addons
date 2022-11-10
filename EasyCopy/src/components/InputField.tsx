@@ -1,24 +1,29 @@
-import type { ChangeEvent, HTMLInputTypeAttribute } from "react";
+import type {ChangeEvent, HTMLInputTypeAttribute} from "react";
 
-interface InputFieldProps {
+interface InputFieldProps<T extends {value: string}> {
   name: string;
   label: string;
   hint?: string;
   value?: string;
-  onChange?: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onChange?: (event: ChangeEvent<T>) => void;
   type?: HTMLInputTypeAttribute | "textarea";
-  [inputProp: string]: any
+  [inputProp: string]: any;
 }
 
-export default function InputField({ name, label, hint, value, onChange, type, ...inputProps }: InputFieldProps) {
+export default function InputField({name, label, hint, value, onChange, type, ...inputProps}: InputFieldProps) {
   return (
     <div className="ec-form-control">
       <div>
-        <label htmlFor={name}>{label}{hint && <small> ({hint})</small>}</label>
+        <label htmlFor={name}>
+          {label}
+          {hint && <small>({hint})</small>}
+        </label>
       </div>
-      {type === 'textarea'
-        ? <textarea id={name} name={name} value={value} onChange={onChange} {...inputProps} />
-        : <input type={type} id={name} name={name} value={value} onChange={onChange} {...inputProps} />}
+      {type === "textarea" ? (
+        <textarea id={name} name={name} value={value} onChange={onChange} {...inputProps} />
+      ) : (
+        <input type={type} id={name} name={name} value={value} onChange={onChange} {...inputProps} />
+      )}
     </div>
-  )
+  );
 }

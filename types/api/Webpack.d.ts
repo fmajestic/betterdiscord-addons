@@ -1,4 +1,4 @@
-export type ModuleFilter = (exports: any, module: any, moduleId: any) => boolean;
+export type ModuleFilter = (exports: any, module?: any, moduleId?: string) => boolean;
 
 /**
  * Series of Filters to be used for finding Webpack modules.
@@ -83,10 +83,7 @@ export default interface Webpack {
    * @param options Set of options to customize the search.
    * @return The found module.
    */
-  getModule(
-    filter: ModuleFilter,
-    options?: QueryOptions
-  ): any;
+  getModule(filter: ModuleFilter, options?: QueryOptions): any;
 
   /**
    * Finds multiple modules using multiple filters.

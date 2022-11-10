@@ -1,4 +1,4 @@
-import { Data } from "./api";
+import {Data} from "./api";
 
 export function useDataKey<T>(key: string) {
   function load() {
