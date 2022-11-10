@@ -1,0 +1,31 @@
+{
+  "name": "betterdiscord-addons",
+  "author": "Filip Majetic",
+  "license": "MIT",
+  "description": "BetterDiscord addons from me",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "bundlebd --development",
+    "bundle": "bundlebd"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.9",
+    "@types/react": "^18.0.25",
+    "bundlebd": "^2.1.4",
+    "typescript": "^4.8.4"
+  },
+  "homepage": "https://gitlab.com/fmajestic/betterdiscord-addons#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/fmajestic/betterdiscord-addons.git"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/fmajestic/betterdiscord-addons/issues"
+  },
+  "keywords": [
+    "discord",
+    "betterdiscord",
+    "addon",
+    "plugin"
+  ]
+}

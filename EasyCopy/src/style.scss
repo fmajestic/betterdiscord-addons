@@ -1,0 +1,57 @@
+.ec-settings {
+  display: flex;
+  flex-direction: column;
+  color: var(--text-normal);
+}
+
+.ec-form-control {
+  margin-bottom: 1em;
+
+  label {
+    display: block;
+    margin-bottom: .3em;
+  }
+
+  small {
+    font-size: smaller;
+  }
+
+  textarea {
+    width: 100%;
+    resize: vertical;
+  }
+}
+
+:root {
+  --ec-border-color: var(--border-color, darkslategray);
+  --ec-background-color: transparent;
+  --ec-background-color-hover: var(--button-background-hover, var(--background-modifier-hover, #354249));
+  --ec-background-color-active: var(--button-background-active, var(--background-modifier-active, #4D5F68));
+}
+
+.ec-copyable {
+  font: inherit;
+  color: inherit;
+  padding: 0 3px;
+  background-color: transparent;
+  border-radius: var(--border-radius-2, 8px);
+
+  &:hover,
+  &:focus-visible {
+    box-shadow: none !important;
+    background-color: var(--ec-background-color-hover);
+  }
+
+  &:active {
+    background-color: var(--ec-background-color-active);
+  }
+
+  /* box-shadow so we don't increase the size (outline doesn't respect border-radius) */
+  &.ec-highlight-outline {
+    box-shadow: 0 0 0 1px var(--ec-border-color);
+  }
+
+  &.ec-highlight-full {
+    background-color: var(--ec-background-color-hover);
+  }
+}

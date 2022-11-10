@@ -1,0 +1,5 @@
+{
+  "entry": "./[plugin]/src/",
+  "output": "./dist/",
+  "bdPath": "/mnt/c/Users/fmajetic/AppData/Roaming/BetterDiscord"
+}
