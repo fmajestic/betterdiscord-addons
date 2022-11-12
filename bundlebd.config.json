@@ -1,5 +1,0 @@
-{
-  "entry": "./[plugin]/src/",
-  "output": "./dist/",
-  "bdPath": "/home/fmajetic/.config/BetterDiscord"
-}

@@ -1,16 +1,16 @@
 import {ReactNode} from "react";
 
+import {DOM, Patcher, Webpack} from "betterdiscord";
+
 import Copyable from "./components/Copyable";
 import SettingsPanel from "./components/SettingsPanel";
 
-import {PluginMeta} from "../../types";
-import {DOM, Patcher, Webpack} from "./common/api";
 import {useSettings} from "./common/settings";
 import {parseRegex} from "./regex";
 
 import style from "./style.scss";
 
-export default function EasyCopy(meta: PluginMeta) {
+export default function EasyCopy() {
   let [settings, , saveSettings] = useSettings();
 
   let patterns = settings.patterns.map(parseRegex);
@@ -71,6 +71,7 @@ export default function EasyCopy(meta: PluginMeta) {
           //  - spoiler:
           //    - can't do it on click
           //    - maybe try a ctrl+click and put "Copy with Ctrl+Click" in a tooltip
+          console.warn("[EasyCopy] Couldn't process message element:", element);
           newMessage.push(element);
         }
       }

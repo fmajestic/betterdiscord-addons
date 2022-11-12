@@ -4,16 +4,17 @@
   "license": "MIT",
   "description": "BetterDiscord addons from me",
   "version": "0.0.1",
+  "private": "true",
   "scripts": {
-    "dev": "bundlebd --development",
-    "bundle": "bundlebd"
+    "dev": "bundlebd --dev --plugin",
+    "bundle": "bundlebd --plugin"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^3.4.0",
     "@types/node": "^18.11.9",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
-    "bundlebd": "^2.1.4",
+    "bundlebd": "^3.0.0",
     "eslint": "^8.27.0",
     "eslint-config-react-app": "^7.0.1",
     "prettier": "^2.7.1",
@@ -52,8 +53,9 @@
     "trailingComma": "none",
     "importOrder": [
       "^react$|^node:",
+      "^@?\\w+",
       "components",
-      "^\\.\\.?(/(\\.\\.|\\w+))*$",
+      "^\\.\\.?.*/\\w+$",
       "\\.\\w+$"
     ],
     "importOrderSeparation": true,

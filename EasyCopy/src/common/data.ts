@@ -1,4 +1,4 @@
-import {Data} from "./api";
+import {Data} from "betterdiscord";
 
 export function useDataKey<T>(key: string) {
   function load() {

@@ -1,0 +1,9 @@
+{
+  "name": "EasyCopy",
+  "author": "fmajestic",
+  "version": "0.0.1",
+  "description": "Adds a copy button to matching text segments",
+  "authorId": "232960695434608640",
+  "website": "https://gitlab.com/fmajestic/betterdiscord-addons",
+  "source": "https://github.com/fmajestic/betterdiscord-addons/tree/master/EasyCopy"
+}

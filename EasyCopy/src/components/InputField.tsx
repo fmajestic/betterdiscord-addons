@@ -1,11 +1,11 @@
 import type {ChangeEvent, HTMLInputTypeAttribute} from "react";
 
-interface InputFieldProps<T extends {value: string}> {
+interface InputFieldProps {
   name: string;
   label: string;
   hint?: string;
   value?: string;
-  onChange?: (event: ChangeEvent<T>) => void;
+  onChange?: (event: ChangeEvent<any>) => void;
   type?: HTMLInputTypeAttribute | "textarea";
   [inputProp: string]: any;
 }
