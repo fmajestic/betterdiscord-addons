@@ -1,14 +1,18 @@
 {
+  "include": ["./**/*"],
+  "exclude": ["dist", "node_modules", "*.js"],
   "compilerOptions": {
-    "allowJs": true,
     "checkJs": true,
     "lib": ["DOM", "ESNext"],
     "jsx": "react",
     "types": ["bundlebd", "node"],
-    "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
+    "esModuleInterop": true,
     "resolveJsonModule": true
   },
-  "include": ["*"],
-  "exclude": ["dist", "node_modules"]
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
 }
